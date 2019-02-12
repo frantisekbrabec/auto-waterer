@@ -1,0 +1,122 @@
+<meta charset="utf-8">
+<title>Auto-watering system</title>
+ 
+<!-- import plugin script -->
+<script src="static/moment.min.js"></script>
+<script src="static/Chart.min.js"></script>
+<h1>Auto-watering system control panel</h1>
+<!-- bar chart canvas element -->
+<div style="width:1000px">
+  <canvas id="chart"></canvas>
+</div> 
+<script>
+
+function hexToRgbA(hex){
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',0.5)';
+    }
+    throw new Error('Bad Hex');
+}
+
+var color = Chart.helpers.color;
+    var config = {
+      type: 'line',
+      data: {
+        datasets: [
+
+        {% for id, plant in pumpdata.iteritems() %}
+        {
+          label: '{{plant.plantid}} Pump Activity',
+          backgroundColor: hexToRgbA('{{plant.color}}'),
+          borderColor: '{{plant.color}}',
+          fill: false,
+          showLine: false,
+          pointStyle: 'triangle',
+          pointRadius: 10,
+          yAxisID: 'y-axis-power',
+          data: {{plant.data|tojson|safe}}
+        },
+        {% endfor %}
+
+        {% for id, plant in moisturedata.iteritems() %}
+        {
+          label: '{{plant.plantid}} Moisture',
+          backgroundColor: hexToRgbA('{{plant.color}}'),
+          borderColor: '{{plant.color}}',
+          fill: false,
+          yAxisID: 'y-axis-moisture',
+          data: {{plant.data|tojson|safe}}
+        },
+        {% endfor %}
+        ]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Auto watering 10 day history'
+        },
+        scales: {
+          xAxes: [{
+            type: 'time',
+            time: {
+              displayFormats: {
+                minute: 'MMM D h:mm:ss a'
+              },
+              unit: 'minute'
+            },
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Date/Time'
+            },
+            ticks: {
+              autoSkip: true,
+              maxTicksLimit: 20,
+              major: {
+                fontStyle: 'bold',
+                fontColor: '#FF0000'
+              }
+            }
+          }],
+          yAxes: [
+          {
+            ticks: {
+              callback: function(value, index, values) {
+                return value ? "on" : "off";
+              },
+              min: 0,
+              max: 1.1,
+              stepSize: 1
+            },
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Power On'
+            },
+            id: 'y-axis-power',
+          },
+          {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Moisture'
+            },
+            id: 'y-axis-moisture',
+          }
+          ]
+        }
+      }
+    };
+
+
+   // get bar chart canvas<br />
+   var mychart = document.getElementById("chart").getContext("2d");
+   var wateringhistory = new Chart(mychart, config);
+</script>

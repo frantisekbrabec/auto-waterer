@@ -1,0 +1,40 @@
+{
+    "SOAKING_DELAY": 10,
+    "MOISTURE_POWER_GPIO":  11,
+    "MIN_VALID_MOISTURE": 1000,
+    "MAX_VALID_MOISTURE": 30000,
+    "PLANTS": [
+        {
+            "PLANT_ID":             1,
+            "PLANT_NAME":           "Grapefruit tree",
+            "MOISTURE_SENSOR_CHANNEL": 0,
+            "WATER_PUMP_GPIO":      7,
+            "WATERING_DURATION":    3,
+            "MOISTURE_THRESHOLD":   15000
+        },
+        {
+            "PLANT_ID":             2,
+            "PLANT_NAME":           "Pineapple",
+            "MOISTURE_SENSOR_CHANNEL": 1,
+            "WATER_PUMP_GPIO":      15,
+            "WATERING_DURATION":    3,
+            "MOISTURE_THRESHOLD":   15000
+        },
+               {
+            "PLANT_ID":             3,
+            "PLANT_NAME":           "Banana",
+            "MOISTURE_SENSOR_CHANNEL": 2,
+            "WATER_PUMP_GPIO":      18,
+            "WATERING_DURATION":    3,
+            "MOISTURE_THRESHOLD":   15000
+        },
+        {
+            "PLANT_ID":             4,
+            "PLANT_NAME":           "Mango",
+            "MOISTURE_SENSOR_CHANNEL": 3,
+            "WATER_PUMP_GPIO":      22,
+            "WATERING_DURATION":    3,
+            "MOISTURE_THRESHOLD":   15000
+        }
+    ]
+}
