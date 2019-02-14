@@ -40,14 +40,16 @@ Edit `config.json` to match your hardware configuration (e.g., GPIO assignments)
 This software is built for the following hardware. Since a single AD converter can handle up to four separate analog signals, it is easy to modify the hardware configuration by adding sensors and using a relay with more channels to support up to four plants. 
 * [Raspberry Pi (any model)](https://amzn.to/2X7l62m)
 * [Relay (5V)](https://amzn.to/2WVOE2F)
-* [Pump (5V)](https://amzn.to/2I9JrBd) + [matching water line](https://amzn.to/2tleJL7)
+* [Pump (5V)](https://amzn.to/2I9JrBd) 
+* [Water line](https://amzn.to/2tleJL7)
 * [Moisture Sensor](https://amzn.to/2GCUHDM)
 * [Analog-Digital Converter ADS1x15](https://amzn.to/2WVOlVC)
+* [MicroUSB breakout board](https://amzn.to/2WZQJL2) (to connect a separate power adapter for the pump)
+* [3.5mm audio jack female](https://amzn.to/2UWrwiI)
+* [3.5mm audio jack male](https://amzn.to/2UTdq1u)
 
 ## Box
 
-You can 3d-print the box to put everything in using the included STL files. In addition to the hardware above, it uses the following parts:
-* MicroUSB breakout board to connect a power adapter for the pump(s)
-* Two 3.5mm audio jacks (per plant) to plug in the sensor and the pump
-* Self tapping screws (M2.3 + 6mm)
-* 4x #8-32 x 2in machine screw and nut to screw the box together
+You can 3d-print the box to put everything in using the included STL files. You will need the following fasteners:
+* [Self tapping screws (M2.3 + 6mm)](https://amzn.to/2E8Oe1r) to attach components to the box
+* 4x [#8-32 x 2in machine screw and nut](https://amzn.to/2Eb2DdJ) to screw the box together
